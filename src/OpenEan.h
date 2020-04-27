@@ -45,10 +45,10 @@ public:
 class OpenEan
 {
   public:
-    OpenEan(int userId);
-    int getProduct(OpenEanItem* resultItem,char ean[]);
+    OpenEan(const char* userId);
+    int getProduct(OpenEanItem* resultItem,const char* ean);
   private:
-    int _userId;
+    const char* _userId;
 };
 
 #endif

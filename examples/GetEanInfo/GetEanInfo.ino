@@ -3,9 +3,10 @@
 void setup() {
   Serial.begin(115200);
 
-  OpenEan connector(400000000);
+  OpenEan connector("400000000");
 
-  OpenEanItem item = connector.getProduct("4060800148834");
+  OpenEanItem item;
+  int error = connector.getProduct(&item,"4060800148834");
 
   Serial.println("Item:");
   Serial.println(item.name);

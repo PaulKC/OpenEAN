@@ -5,7 +5,7 @@
 #include "OpenEan.h"
 #include <ESP8266HTTPClient.h>
 
-OpenEan::OpenEan(int userId)
+OpenEan::OpenEan(const char* userId)
 {
   _userId = userId;
 }
@@ -30,11 +30,11 @@ OpenEan::OpenEan(int userId)
   14 - unknown command - es wurde mit dem Parameter "cmd" ein unbekanntes Kommando übergeben
   99 - error connecting to https://opengtindb.org
 */
-int OpenEan::getProduct(OpenEanItem *resultItem, char ean[])
+int OpenEan::getProduct(OpenEanItem* resultItem,const char* ean)
 {
   HTTPClient https;
   char requestUrl[100];
-  sprintf(requestUrl, "http://opengtindb.org/?ean=%s&cmd=query&queryid=%i", ean, _userId);
+  sprintf(requestUrl, "http://opengtindb.org/?ean=%s&cmd=query&queryid=%s", ean, _userId);
   if (https.begin(requestUrl))
   { // HTTPS
     int httpCode = https.GET();
